@@ -1,0 +1,175 @@
+:root {
+  --bg: #0b1220;
+  --panel: #101a2f;
+  --text: #e6ecff;
+  --muted: rgba(230, 236, 255, 0.72);
+  --border: rgba(255, 255, 255, 0.1);
+  --primary: #5b8cff;
+  --danger: #ff5b6e;
+}
+
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font:
+    14px/1.4 system-ui,
+    -apple-system,
+    Segoe UI,
+    Roboto,
+    Arial;
+}
+.container {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 18px;
+}
+.top {
+  margin-bottom: 14px;
+}
+h1 {
+  margin: 0;
+  font-size: 22px;
+}
+.muted {
+  color: var(--muted);
+}
+.small {
+  font-size: 12px;
+}
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 14px;
+  margin-top: 14px;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.25);
+}
+h2 {
+  margin: 0 0 10px 0;
+  font-size: 16px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+.grid label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--muted);
+}
+.grid label.full {
+  grid-column: 1 / -1;
+}
+
+.grid input,
+.grid textarea,
+select,
+#domainInput {
+  width: 100%;
+  padding: 10px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text);
+  outline: none;
+}
+.grid textarea {
+  resize: vertical;
+}
+
+.grid2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  align-items: start;
+}
+.row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 8px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.03);
+}
+.box {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.03);
+}
+.boxTitle {
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-top: 10px;
+}
+.btn {
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text);
+  cursor: pointer;
+}
+.btn.primary {
+  background: var(--primary);
+  border-color: rgba(0, 0, 0, 0.15);
+  color: #0b1220;
+  font-weight: 800;
+}
+.btn.danger {
+  background: rgba(255, 91, 110, 0.2);
+  border-color: rgba(255, 91, 110, 0.35);
+}
+
+.rowActions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.rules {
+  margin-top: 10px;
+  font-size: 12px;
+  color: var(--muted);
+  border-top: 1px dashed rgba(255, 255, 255, 0.15);
+  padding-top: 10px;
+}
+
+.ruleItem {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 6px 0;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+}
+.ruleItem code {
+  color: var(--text);
+}
+
+.jsonBox {
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(0, 0, 0, 0.25);
+  max-height: 260px;
+  overflow: auto;
+  white-space: pre-wrap;
+}

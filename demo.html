@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>CV Asistan Demo</title>
+    <style>
+      body {
+        font-family: system-ui, Arial;
+        padding: 16px;
+      }
+      form {
+        border: 1px solid #ddd;
+        padding: 12px;
+        border-radius: 10px;
+        max-width: 780px;
+      }
+      .row {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 10px;
+      }
+      label {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        font-size: 13px;
+      }
+      input,
+      textarea,
+      select {
+        padding: 10px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+      }
+      textarea {
+        resize: vertical;
+      }
+      .note {
+        color: #666;
+        margin-top: 10px;
+      }
+      iframe {
+        width: 100%;
+        height: 420px;
+        border: 1px dashed #aaa;
+        border-radius: 10px;
+        margin-top: 14px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>CV Asistan Demo</h1>
+
+    <form>
+      <h3>Top Frame Form</h3>
+      <div class="row">
+        <label
+          >Ad
+          <input
+            name="first_name"
+            placeholder="Adınız"
+            autocomplete="given-name"
+          />
+        </label>
+        <label
+          >Soyad
+          <input
+            name="last_name"
+            placeholder="Soyadınız"
+            autocomplete="family-name"
+          />
+        </label>
+        <label
+          >Ad Soyad
+          <input id="fullname" placeholder="Full Name" autocomplete="name" />
+        </label>
+      </div>
+
+      <div class="row">
+        <label
+          >E-posta
+          <input
+            type="email"
+            name="email"
+            placeholder="email@example.com"
+            autocomplete="email"
+          />
+        </label>
+        <label
+          >Telefon
+          <input
+            type="tel"
+            id="tel"
+            placeholder="+90 5xx..."
+            autocomplete="tel"
+          />
+        </label>
+      </div>
+
+      <div class="row">
+        <label
+          >Adres
+          <input
+            name="address_line_1"
+            placeholder="Adres"
+            autocomplete="address-line1"
+          />
+        </label>
+        <label
+          >Şehir
+          <input
+            name="city"
+            placeholder="Şehir"
+            autocomplete="address-level2"
+          />
+        </label>
+      </div>
+
+      <div class="row">
+        <label
+          >Posta Kodu
+          <input name="postal" placeholder="34000" autocomplete="postal-code" />
+        </label>
+        <label
+          >Ülke
+          <select name="country" autocomplete="country">
+            <option value="">Seçiniz</option>
+            <option value="TR">Türkiye</option>
+            <option value="US">United States</option>
+            <option value="DE">Germany</option>
+          </select>
+        </label>
+        <label
+          >Doğum Tarihi
+          <input type="date" name="dob" autocomplete="bday" />
+        </label>
+      </div>
+
+      <div class="row">
+        <label
+          >LinkedIn
+          <input
+            type="url"
+            name="linkedin_url"
+            placeholder="https://linkedin.com/in/..."
+          />
+        </label>
+        <label
+          >GitHub
+          <input
+            type="url"
+            name="github_url"
+            placeholder="https://github.com/..."
+          />
+        </label>
+        <label
+          >Website
+          <input type="url" name="website" placeholder="https://..." />
+        </label>
+      </div>
+
+      <label
+        >Hakkımda
+        <textarea
+          name="about"
+          placeholder="Kısaca kendiniz..."
+          rows="4"
+        ></textarea>
+      </label>
+
+      <p class="note">
+        Not: Name Lock PROTECT modunu test etmek için doldurduktan sonra isim
+        alanına manuel farklı değer yazmayı deneyin. Eklenti (PROTECT) ise geri
+        yazacaktır.
+      </p>
+    </form>
+
+    <h3>Iframe Form</h3>
+    <iframe
+      srcdoc='
+    <!doctype html>
+    <html lang="en">
+    <head><meta charset="utf-8"/><style>
+      body{ font-family: system-ui, Arial; padding:12px; }
+      .row{ display:flex; gap:10px; margin-bottom:10px; }
+      label{ flex:1; display:flex; flex-direction:column; gap:6px; font-size:13px; }
+      input, textarea{ padding:10px; border-radius:8px; border:1px solid #ccc; }
+      .hint{ color:#666; }
+    </style></head>
+    <body>
+      <h4>Iframe Application Form</h4>
+      <div class="row">
+        <label>First Name
+          <input id="fname" placeholder="First name" />
+        </label>
+        <label>Last Name
+          <input id="lname" placeholder="Last name" />
+        </label>
+      </div>
+      <div class="row">
+        <label>E-mail
+          <input type="email" placeholder="E-mail address" />
+        </label>
+        <label>Mobile
+          <input type="tel" placeholder="Mobile phone" />
+        </label>
+      </div>
+      <label>About me
+        <textarea rows="4" placeholder="Short bio"></textarea>
+      </label>
+      <p class="hint">Iframe içinde çalışması beklenir (all_frames + frame broadcast).</p>
+
+      <script>
+        // Simulate a "controlled" input override after user input
+        setInterval(() => {
+          const el = document.getElementById("fname");
+          if (el && el.value && !el.dataset.locked) {
+            // pretend framework re-renders different value
+            el.value = el.value + "";
+          }
+        }, 1500);
+      </script>
+    </body>
+    </html>
+  '
+    ></iframe>
+  </body>
+</html>

@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>CV Asistan Ayarları</title>
+    <link rel="stylesheet" href="options.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header class="top">
+        <h1>CV Asistan Ayarları</h1>
+        <div class="muted">
+          Profil bilgileri, Name Lock, site kuralları, JSON export/import
+        </div>
+      </header>
+
+      <section class="panel">
+        <h2>Profil</h2>
+
+        <div class="grid">
+          <!-- Kimlik -->
+          <label
+            >Ad
+            <input id="firstName" type="text" />
+          </label>
+          <label
+            >Soyad
+            <input id="lastName" type="text" />
+          </label>
+          <label
+            >Ad Soyad
+            <input id="fullName" type="text" />
+          </label>
+
+          <!-- İletişim -->
+          <label
+            >E-posta
+            <input id="email" type="email" />
+          </label>
+          <label
+            >Telefon
+            <input id="phone" type="tel" />
+          </label>
+          <label
+            >Website/Portfolio
+            <input id="website" type="url" />
+          </label>
+
+          <!-- Adres -->
+          <label
+            >Adres
+            <input id="addressLine" type="text" />
+          </label>
+          <label
+            >Şehir
+            <input id="city" type="text" />
+          </label>
+          <label
+            >İl/Eyalet
+            <input id="state" type="text" />
+          </label>
+
+          <label
+            >Posta Kodu
+            <input id="postalCode" type="text" />
+          </label>
+          <label
+            >Ülke
+            <input id="country" type="text" />
+          </label>
+          <label
+            >Doğum Tarihi
+            <input
+              id="dateOfBirth"
+              type="text"
+              placeholder="YYYY-MM-DD (varsa)"
+            />
+          </label>
+
+          <!-- Sosyal -->
+          <label
+            >LinkedIn
+            <input id="linkedin" type="url" />
+          </label>
+          <label
+            >GitHub
+            <input id="github" type="url" />
+          </label>
+
+          <!-- Yeni alanlar -->
+          <label
+            >Mezuniyet Yılı / Tarihi
+            <input
+              id="graduationYear"
+              type="text"
+              placeholder="Örn: 2022 veya 2022-06"
+            />
+          </label>
+          <label
+            >Tecrübe Yılı
+            <input id="experienceYears" type="text" placeholder="Örn: 3" />
+          </label>
+          <label
+            >Maaş Beklentisi
+            <input
+              id="salaryExpectation"
+              type="text"
+              placeholder="Örn: 60.000 TL / 2.000$"
+            />
+          </label>
+
+          <!-- Metin alanları -->
+          <label class="full"
+            >Özet / Hakkımda
+            <textarea id="summary" rows="4"></textarea>
+          </label>
+
+          <label class="full"
+            >Cover Letter / Ek Bilgi (Additional Information)
+            <textarea
+              id="coverLetter"
+              rows="5"
+              placeholder="Ön yazı / Additional information..."
+            ></textarea>
+          </label>
+        </div>
+
+        <div class="actions">
+          <button id="saveProfile" class="btn primary">Profili Kaydet</button>
+          <span id="profileStatus" class="muted"></span>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Ayarlar</h2>
+
+        <div class="grid2">
+          <label class="row">
+            <input id="debug" type="checkbox" />
+            <span>Debug modu (console + sayfa overlay)</span>
+          </label>
+
+          <label class="row">
+            <input id="skipIfNotEmpty" type="checkbox" />
+            <span>Boş değilse doldurma (önerilir)</span>
+          </label>
+
+          <label class="row">
+            <input id="dryRun" type="checkbox" />
+            <span>Dry-run (sadece raporla, doldurma)</span>
+          </label>
+
+          <div class="box">
+            <div class="boxTitle">Name Lock</div>
+
+            <label class="row">
+              <input id="nameLockEnabled" type="checkbox" />
+              <span>Ad/Soyad kilidi aktif</span>
+            </label>
+
+            <label
+              >Mod
+              <select id="nameLockMode">
+                <option value="IF_EMPTY">A) Sadece boşsa doldur</option>
+                <option value="NEVER">B) Asla dokunma</option>
+                <option value="PROTECT">
+                  C) Sürekli koru (MutationObserver)
+                </option>
+              </select>
+            </label>
+
+            <div class="muted small">
+              PROTECT modunda, site sonra ismi değiştirirse eklenti geri yazar.
+              Eğer alan site tarafından farklı değerle doldurulmuşsa override
+              etmez (strict).
+            </div>
+          </div>
+
+          <div class="box">
+            <div class="boxTitle">Site Rules</div>
+
+            <label
+              >Genel mod
+              <select id="siteMode">
+                <option value="neutral">Neutral</option>
+                <option value="whitelist">Whitelist mode</option>
+                <option value="blacklist">Blacklist mode</option>
+              </select>
+            </label>
+
+            <div class="rowActions">
+              <input id="domainInput" type="text" placeholder="example.com" />
+              <select id="domainRule">
+                <option value="whitelist">Whitelist</option>
+                <option value="blacklist">Blacklist</option>
+              </select>
+              <button id="addDomain" class="btn">Ekle/Güncelle</button>
+            </div>
+
+            <div id="rulesTable" class="rules"></div>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button id="saveSettings" class="btn primary">Ayarları Kaydet</button>
+          <span id="settingsStatus" class="muted"></span>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>JSON Export / Import</h2>
+        <div class="rowActions">
+          <button id="exportJson" class="btn">Export JSON</button>
+          <button id="importJson" class="btn danger">Import JSON</button>
+          <input
+            id="importFile"
+            type="file"
+            accept="application/json"
+            style="display: none"
+          />
+        </div>
+        <pre id="jsonBox" class="jsonBox"></pre>
+        <div class="muted small">
+          Import: mevcut profile/settings/siteRules üzerine yazar.
+        </div>
+      </section>
+    </div>
+
+    <script src="options.js"></script>
+  </body>
+</html>
